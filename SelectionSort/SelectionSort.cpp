@@ -4,11 +4,11 @@ using namespace std;
 void selectionSort(int *, int);
 int searchMinElementIndex(int *, int);
 void printArr(int *, int);
-void swap(int &a, int &b)
+void swap(int *a, int *b)
 {
-	a ^= b;
-	b ^= a;
-	a ^= b;
+	*a ^= *b;
+	*b ^= *a;
+	*a ^= *b;
 }
 
 int main()
