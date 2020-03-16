@@ -1,44 +1,47 @@
 #include <iostream>
 using namespace std;
 
-void printArr(int*, int);
-void insertionSort(int*, int);
-void swap(int& a, int& b) {
-		a ^= b;
-		b ^= a;
-		a ^= b;
-}
-int main() {
+void printArr(int *, int);
+void insertionSort(int *, int);
 
-		int A[] = { 5, 6, 2, 3, 1, 4, -1, 7, 0 };
-		printArr(A, 9);
-		insertionSort(A, 9);
+int main()
+{
+	int A[] = {5, 6, 7, 8, 1, 4, -1, 7, 0};
+	int n = (sizeof(A) / sizeof(*A));
+	printArr(A, n);
+	insertionSort(A, n);
 
-		return 0;
+	return 0;
 }
-void insertionSort(int* arr, int n) {
-		int i = 1, j, x;
-		while (i < n)
+
+void insertionSort(int *arr, int n)
+{
+	// cnt - index of sorted array
+	// i - search spot for current number
+	// x - current number
+	int cnt = 1, i, x;
+	while (cnt < n)
+	{
+		x = arr[cnt];
+		i = cnt - 1;
+		while (i >= 0 && arr[i] > x)
 		{
-				x = arr[i];
-				j = i - 1;
-				while (j >= 0 && arr[j] > x)
-				{
-						arr[j + 1] = arr[j];
-						j = j - 1;
-				}
-				arr[j + 1] = x;
-				i++;
+			arr[i + 1] = arr[i];
+			i--;
 		}
-		printArr(arr, n);
+		arr[i + 1] = x;
+		cnt++;
+	}
+	printArr(arr, n);
 }
-void printArr(int* arr, int n) {
-		for (size_t i = 0; i < n; i++)
-		{
-				if (i < n - 1)
-						cout << arr[i] << ", ";
-				else
-						cout << arr[i];
-		}
-		cout << endl;
+void printArr(int *arr, int n)
+{
+	for (size_t i = 0; i < n; i++)
+	{
+		if (i < n - 1)
+			cout << arr[i] << ", ";
+		else
+			cout << arr[i];
+	}
+	cout << endl;
 }
